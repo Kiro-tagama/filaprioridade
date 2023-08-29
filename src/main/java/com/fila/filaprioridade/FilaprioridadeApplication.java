@@ -39,12 +39,12 @@ public class FilaprioridadeApplication {
 
 	@PostMapping("/addUser")
 	public ResponseEntity<Object> addUser(@RequestBody Item res) {
-			if (filas1.getFilaFinal().length <= filas2.getFilaFinal().length) {
+			if (filas1.getIndex() <= filas2.getIndex()) {
 				filas1.addToFila(res);
-				System.out.println(res.name);
+				System.out.println();
 				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res);
 			} else {
-				// filas2.addToFila(res);
+				filas2.addToFila(res);
 				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res);
 			}
 	}	

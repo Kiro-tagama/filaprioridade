@@ -9,7 +9,6 @@ public class Filas {
   List<Item> fila2 = new ArrayList<>();
   List<Item> fila3 = new ArrayList<>();
   List<Item> fila4 = new ArrayList<>();
-  List<Item> filaFinal = new ArrayList<>();
 
   public Object addToFila(Item res) {
     switch (res.priority) {
@@ -32,13 +31,27 @@ public class Filas {
   }
   
   
+  /**
+   * @return
+   */
   public Object[] getFilaFinal() {
-    filaFinal.addAll(fila1);
-    filaFinal.addAll(fila2);
-    filaFinal.addAll(fila3);
+    List<Item> filaFinal = new ArrayList<>();
     filaFinal.addAll(fila4);
+    filaFinal.addAll(fila3);
+    filaFinal.addAll(fila2);
+    filaFinal.addAll(fila1);
 
     Object[] filas = {fila1,fila2,fila3,fila4,filaFinal};
     return filas;
+  }
+
+  public int getIndex() {
+    List<Item> index = new ArrayList<>();
+    index.addAll(fila4);
+    index.addAll(fila3);
+    index.addAll(fila2);
+    index.addAll(fila1);
+
+    return index.size();
   }
 }
