@@ -11,37 +11,34 @@ public class Filas {
   List<Item> fila4 = new ArrayList<>();
   List<Item> filaFinal = new ArrayList<>();
 
-  // Add elements to the queues
-  // fila1.add(new Item(0, "dads", 1));
-  // fila2.add(new Item(0, "dads", 2));
-  // fila3.add(new Item(0, "dads", 3));
-  // fila4.add(new Item(0, "dads", 4));
-  public Object addToFila(Item element) {
-    switch (element.priority) {
+  public Object addToFila(Item res) {
+    switch (res.priority) {
       case 1:
-          fila1.add(element);
+          fila1.add(res);
           break;
       case 2:
-          fila2.add(element);
+          fila2.add(res);
           break;
       case 3:
-          fila3.add(element);
+          fila3.add(res);
           break;
       case 4:
-          fila4.add(element);
+          fila4.add(res);
           break;
       default:
-          System.out.println("Invalid queue number.");
+          System.out.println("Invalid queue number." + res.toString());
     }
-    return element;
+    return res;
   }
-  // Combine queues
-  public List<Item> getFilaFinal() {
+  
+  
+  public Object[] getFilaFinal() {
     filaFinal.addAll(fila1);
     filaFinal.addAll(fila2);
     filaFinal.addAll(fila3);
     filaFinal.addAll(fila4);
 
-    return filaFinal;
+    Object[] filas = {fila1,fila2,fila3,fila4,filaFinal};
+    return filas;
   }
 }

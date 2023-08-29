@@ -3,14 +3,18 @@ package com.fila.filaprioridade;
 import java.util.UUID;
 
 public class Item {
-  String id;
-  String name;
-  int priority;
+  public String id=UUID.randomUUID().toString();
+  public String name;
+  public int priority;
 
-  public Item(String name, int priority) {
-    this.id = UUID.randomUUID().toString();
+  public Object Item(String name, int priority) {
     this.name = name;
     this.priority = priority;
+
+    return "{ id='" + id + '\'' +
+    ", name='" + name + '\'' +
+    ", priority=" + priority +
+    '}';
   }
 
 }

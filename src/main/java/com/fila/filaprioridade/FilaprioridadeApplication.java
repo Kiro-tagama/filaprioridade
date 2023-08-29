@@ -1,7 +1,5 @@
 package com.fila.filaprioridade;
 
-
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -40,16 +38,14 @@ public class FilaprioridadeApplication {
 	}
 
 	@PostMapping("/addUser")
-	public ResponseEntity<String> addUser(@RequestBody Item res) {
-			if (filas1.getFilaFinal().size() <= filas2.getFilaFinal().size()) {
-				Object data=filas1.addToFila(res);
-				System.out.println(res);
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + data);
+	public ResponseEntity<Object> addUser(@RequestBody Item res) {
+			if (filas1.getFilaFinal().length <= filas2.getFilaFinal().length) {
+				filas1.addToFila(res);
+				System.out.println(res.name);
+				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res);
 			} else {
-				Object data=filas2.addToFila(res);
-				System.out.println(res);
-
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + data);
+				// filas2.addToFila(res);
+				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res);
 			}
 	}	
 
