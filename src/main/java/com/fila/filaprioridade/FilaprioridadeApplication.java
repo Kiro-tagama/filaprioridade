@@ -42,10 +42,10 @@ public class FilaprioridadeApplication {
 			if (filas1.getIndex() <= filas2.getIndex()) {
 				filas1.addToFila(res);
 				System.out.println();
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res);
+				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res.id);
 			} else {
 				filas2.addToFila(res);
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res);
+				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res.id);
 			}
 	}	
 

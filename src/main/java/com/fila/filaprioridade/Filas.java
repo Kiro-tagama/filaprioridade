@@ -16,31 +16,27 @@ public class Filas {
           fila1.add(res);
           break;
       case 2:
-          fila2.add(res);
-          break;
+      fila2.add(res);
+      break;
       case 3:
           fila3.add(res);
           break;
       case 4:
           fila4.add(res);
           break;
-      default:
+          default:
           System.out.println("Invalid queue number." + res.toString());
-    }
-    return res;
-  }
-  
-  
-  /**
-   * @return
-   */
-  public Object[] getFilaFinal() {
-    List<Item> filaFinal = new ArrayList<>();
-    filaFinal.addAll(fila4);
-    filaFinal.addAll(fila3);
-    filaFinal.addAll(fila2);
-    filaFinal.addAll(fila1);
-
+        }
+        return res;
+      }
+      
+      public Object[] getFilas() {
+        List<Item> filaFinal = new ArrayList<>();
+        filaFinal.addAll(fila4);
+        filaFinal.addAll(fila3);
+        filaFinal.addAll(fila2);
+        filaFinal.addAll(fila1);
+    
     Object[] filas = {fila1,fila2,fila3,fila4,filaFinal};
     return filas;
   }
