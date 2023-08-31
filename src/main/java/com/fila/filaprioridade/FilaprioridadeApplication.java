@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @SpringBootApplication
 @RestController
@@ -48,5 +50,16 @@ public class FilaprioridadeApplication {
 				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res.id);
 			}
 	}	
+
+	@DeleteMapping("/delUser/{userId}")
+	public ResponseEntity<String> deleteUser(@PathVariable String userId) {
+		boolean userRemoved = filas1.removeUser(userId) || filas2.removeUser(userId);
+		
+		if (userRemoved) {
+				return ResponseEntity.ok("User deleted successfully");
+		} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+		}
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.fila.filaprioridade;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Filas {
@@ -49,5 +50,28 @@ public class Filas {
     index.addAll(fila1);
 
     return index.size();
+  }
+
+  public boolean removeUser(String userId) {
+      boolean removed = false;
+      
+      for (List<Item> fila : Arrays.asList(fila1, fila2, fila3, fila4)) {
+          Item userToRemove = null;
+          
+          for (Item user : fila) {
+              if (user.id.equals(userId)) {
+                  userToRemove = user;
+                  break;
+              }
+          }
+          
+          if (userToRemove != null) {
+              fila.remove(userToRemove);
+              removed = true;
+              break;
+          }
+      }
+      
+      return removed;
   }
 }
