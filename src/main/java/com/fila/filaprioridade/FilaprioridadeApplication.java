@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,34 +32,42 @@ public class FilaprioridadeApplication {
 
 	@GetMapping("/")
 	public String start() {
-			return "Servidor iniciado...";
+		return "Servidor iniciado...";
 	}
 
 	@GetMapping("/allFilas")
 	public ResponseEntity<Object> allFilas() {
-			return ResponseEntity.status(HttpStatus.OK).body(secaoFilas);
+		return ResponseEntity.status(HttpStatus.OK).body(secaoFilas);
 	}
 
 	@PostMapping("/addUser")
 	public ResponseEntity<Object> addUser(@RequestBody Item res) {
-			if (filas1.getIndex() <= filas2.getIndex()) {
-				filas1.addToFila(res);
-				System.out.println();
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res.id);
-			} else {
-				filas2.addToFila(res);
-				return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res.id);
-			}
-	}	
+		if (filas1.getIndex() <= filas2.getIndex()) {
+			filas1.addToFila(res);
+			System.out.println();
+			return ResponseEntity.status(HttpStatus.OK).body("User added to filas1 with ID: " + res.id);
+		} 
+
+		filas2.addToFila(res);
+		return ResponseEntity.status(HttpStatus.OK).body("User added to filas2 with ID: " + res.id);
+	}
+
+	@PutMapping("/setUser")
+	public ResponseEntity<String> setUser(@RequestBody Item res) {
+		filas1.setUser(res);
+    filas2.setUser(res);
+		
+		return ResponseEntity.status(HttpStatus.OK).body("User " + res.id);
+	}
 
 	@DeleteMapping("/delUser/{userId}")
 	public ResponseEntity<String> deleteUser(@PathVariable String userId) {
 		boolean userRemoved = filas1.removeUser(userId) || filas2.removeUser(userId);
 		
 		if (userRemoved) {
-				return ResponseEntity.ok("User deleted successfully");
+			return ResponseEntity.ok("User deleted successfully");
 		} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
 		}
 	}
 
